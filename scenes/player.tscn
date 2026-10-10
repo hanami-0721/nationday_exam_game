@@ -27,3 +27,14 @@ limit_right = 648
 limit_bottom = 270
 position_smoothing_enabled = true
 position_smoothing_speed = 6.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="LivesLabel" type="Label" parent="UI"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 240.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0.1, 0.1, 0.1, 1)
+theme_override_font_sizes/font_size = 18
+text = "当前生命：5"

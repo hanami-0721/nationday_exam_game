@@ -13,6 +13,7 @@ extends CharacterBody2D
 
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var lives_label: Label = $UI/LivesLabel
 
 var flying : bool = false
 var last_space_press_time := -1000
@@ -20,6 +21,10 @@ var dash_timer := 0.0
 var dash_cooldown_timer := 0.0
 var dash_direction := 1.0
 var jumps_left := 0
+var lives := 5
+
+func _ready() -> void:
+	update_lives_label()
 
 func _physics_process(delta: float) -> void:
 
@@ -125,3 +130,19 @@ func start_dash() -> void:
 
 	dash_timer = dash_duration
 	dash_cooldown_timer = dash_cooldown
+
+func take_damage() -> void:
+	if lives <= 0:
+		return
+
+	lives -= 1
+	print("生命 -1，剩余生命：", lives)
+	update_lives_label()
+	if lives <= 0:
+		print("失败")
+
+func on_victory() -> void:
+	print("胜利！")
+
+func update_lives_label() -> void:
+	lives_label.text = "当前生命：" + str(lives)

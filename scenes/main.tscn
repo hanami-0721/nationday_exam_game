@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/prefabs/hazards/spikes_double.tscn" id="15_ycytw"]
 [ext_resource type="PackedScene" path="res://scenes/prefabs/interactables/spring_red.tscn" id="16_nih4k"]
 [ext_resource type="PackedScene" path="res://scenes/prefabs/collectibles/coin_gold_round.tscn" id="17_rmlt8"]
+[ext_resource type="PackedScene" path="res://scenes/prefabs/interactables/flag.tscn" id="18_flag"]
 
 [node name="Main" type="Node2D" unique_id=2061129075]
 
@@ -192,6 +193,10 @@ position = Vector2(216, 216)
 [node name="SpringRed_01" parent="Level/PrefabInstances/Interactables" unique_id=34192139 instance=ExtResource("16_nih4k")]
 z_index = 5
 position = Vector2(325, 108)
+
+[node name="Flag_01" parent="Level/PrefabInstances/Interactables" instance=ExtResource("18_flag")]
+z_index = 5
+position = Vector2(600, 225)
 
 [node name="Collectibles" type="Node2D" parent="Level/PrefabInstances" unique_id=2086540192]
 

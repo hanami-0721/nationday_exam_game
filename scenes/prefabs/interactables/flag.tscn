@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/flag.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="Shape_flag"]
+size = Vector2(28, 44)
+
+[node name="Flag" type="Area2D" groups=["flag"]]
+collision_layer = 8
+collision_mask = 2
+script = ExtResource("1_script")
+
+[node name="Pole" type="Polygon2D" parent="."]
+color = Color(0.45, 0.33, 0.22, 1)
+polygon = PackedVector2Array(-1.5, -40, 1.5, -40, 1.5, 0, -1.5, 0)
+
+[node name="Banner" type="Polygon2D" parent="."]
+color = Color(1, 0.25, 0.25, 1)
+polygon = PackedVector2Array(1.5, -40, 24, -32, 1.5, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -20)
+shape = SubResource("Shape_flag")
