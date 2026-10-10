@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var acceleration: float = 600.0
 @export var deceleration: float = 800.0
 @export var jump_velocity: float = -190.0
+@export var max_jumps := 2
 @export var dash_speed: float = 240.0
 @export var dash_duration: float = 0.16
 @export var dash_cooldown: float = 0.45
@@ -18,6 +19,7 @@ var last_space_press_time := -1000
 var dash_timer := 0.0
 var dash_cooldown_timer := 0.0
 var dash_direction := 1.0
+var jumps_left := 0
 
 func _physics_process(delta: float) -> void:
 
@@ -33,6 +35,8 @@ func _physics_process(delta: float) -> void:
 
 	if !flying:
 		apply_gravity(delta)
+		if is_on_floor():
+			jumps_left = max_jumps
 		handle_jump()
 	else:
 		handle_vertical_movement(delta)
@@ -80,8 +84,15 @@ func handle_horizontal_movement(delta: float) -> void:
 		)
 
 func handle_jump() -> void:
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if not Input.is_action_just_pressed("jump"):
+		return
+
+	if is_on_floor():
 		velocity.y = jump_velocity
+		jumps_left = max_jumps - 1
+	elif jumps_left > 0:
+		velocity.y = jump_velocity
+		jumps_left -= 1
 
 func update_sprite_direction() -> void:
 	if velocity.x != 0.0:
